@@ -1,4 +1,4 @@
-package uz.heeypay.ecom.keycloak;
+package uz.khakimjanovich.platform.keycloak;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -27,7 +27,7 @@ import org.springframework.security.oauth2.core.http.converter.OAuth2AccessToken
 import org.springframework.web.client.RestClient;
 
 /**
- * Adding the library and setting {@code ecom.keycloak.url} gives every module a {@link
+ * Adding the library and setting {@code platform.keycloak.url} gives every module a {@link
  * KeycloakAdmin}. It logs in as its own client with client credentials and refreshes the token when
  * it expires; a token Keycloak refuses (a restart, a rotated secret) is dropped and the call tried
  * once more with a new one. Every call, the token request included, gives up after the configured

@@ -1,6 +1,6 @@
-package uz.heeypay.ecom.keycloak;
+package uz.khakimjanovich.platform.keycloak;
 
-import uz.heeypay.ecom.error.StatusThrowable;
+import uz.khakimjanovich.platform.error.StatusThrowable;
 
 /** What can go wrong talking to Keycloak's admin API. */
 public enum KeycloakExceptionStatus implements StatusThrowable {

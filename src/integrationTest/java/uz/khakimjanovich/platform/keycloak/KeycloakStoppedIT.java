@@ -1,4 +1,4 @@
-package uz.heeypay.ecom.keycloak;
+package uz.khakimjanovich.platform.keycloak;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.utility.MountableFile;
-import uz.heeypay.ecom.error.GeneralException;
+import uz.khakimjanovich.platform.error.GeneralException;
 
 /**
  * Keycloak going away mid-life is KEYCLOAK_UNAVAILABLE, never a raw client exception, and the
@@ -29,21 +29,24 @@ class KeycloakStoppedIT {
             .withEnv("KC_BOOTSTRAP_ADMIN_USERNAME", "admin")
             .withEnv("KC_BOOTSTRAP_ADMIN_PASSWORD", "test")
             .withCopyFileToContainer(
-                MountableFile.forClasspathResource("ecom-realm.json"),
-                "/opt/keycloak/data/import/ecom-realm.json")
+                MountableFile.forClasspathResource("demo-realm.json"),
+                "/opt/keycloak/data/import/demo-realm.json")
             .withExposedPorts(8080)
             .waitingFor(
-                Wait.forHttp("/realms/ecom")
+                Wait.forHttp("/realms/demo")
                     .forPort(8080)
                     .withStartupTimeout(Duration.ofMinutes(3)));
     keycloak.start();
     new ApplicationContextRunner()
         .withConfiguration(AutoConfigurations.of(KeycloakAutoConfiguration.class))
         .withPropertyValues(
-            "ecom.keycloak.url=http://" + keycloak.getHost() + ":" + keycloak.getMappedPort(8080),
-            "ecom.keycloak.realm=ecom",
-            "ecom.keycloak.client-id=ecom-backend",
-            "ecom.keycloak.client-secret=local-only")
+            "platform.keycloak.url=http://"
+                + keycloak.getHost()
+                + ":"
+                + keycloak.getMappedPort(8080),
+            "platform.keycloak.realm=demo",
+            "platform.keycloak.client-id=demo-backend",
+            "platform.keycloak.client-secret=local-only")
         .run(
             context -> {
               var admin = context.getBean(KeycloakAdmin.class);

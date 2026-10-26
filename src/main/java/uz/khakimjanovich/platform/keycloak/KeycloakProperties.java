@@ -1,4 +1,4 @@
-package uz.heeypay.ecom.keycloak;
+package uz.khakimjanovich.platform.keycloak;
 
 import jakarta.validation.constraints.NotBlank;
 import java.time.Duration;
