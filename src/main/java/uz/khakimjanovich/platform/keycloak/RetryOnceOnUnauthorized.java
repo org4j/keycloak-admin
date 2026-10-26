@@ -1,4 +1,4 @@
-package uz.heeypay.ecom.keycloak;
+package uz.khakimjanovich.platform.keycloak;
 
 import java.io.IOException;
 import org.springframework.http.HttpHeaders;

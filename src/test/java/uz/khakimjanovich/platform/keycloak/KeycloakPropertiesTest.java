@@ -1,4 +1,4 @@
-package uz.heeypay.ecom.keycloak;
+package uz.khakimjanovich.platform.keycloak;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,4 +1,4 @@
-package uz.heeypay.ecom.keycloak;
+package uz.khakimjanovich.platform.keycloak;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,7 +24,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.json.JsonCompareMode;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestClient;
-import uz.heeypay.ecom.error.GeneralException;
+import uz.khakimjanovich.platform.error.GeneralException;
 
 /**
  * No raw HTTP failure escapes: a conflict, refused input, or Keycloak unavailable with its own

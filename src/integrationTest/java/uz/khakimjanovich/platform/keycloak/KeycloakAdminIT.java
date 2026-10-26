@@ -1,4 +1,4 @@
-package uz.heeypay.ecom.keycloak;
+package uz.khakimjanovich.platform.keycloak;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -31,8 +31,8 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.MountableFile;
-import uz.heeypay.ecom.error.GeneralException;
-import uz.heeypay.ecom.observability.ObservabilityAutoConfiguration;
+import uz.khakimjanovich.platform.error.GeneralException;
+import uz.khakimjanovich.platform.observability.ObservabilityAutoConfiguration;
 
 /**
  * The admin client against a real Keycloak: users, roles, and client secrets that rotate and never
