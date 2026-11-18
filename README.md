@@ -1,4 +1,4 @@
-# keycloak
+# keycloak-admin4j
 
 Keycloak's admin API for the few things modules need: users (with a password, a verified email,
 realm roles and the required actions the app asks for, e.g. `CONFIGURE_TOTP`) and
