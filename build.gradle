@@ -1,8 +1,8 @@
 // Keycloak's admin API for any module: users, realm roles and machine-to-machine clients.
 // The client logs in with its own client credentials and refreshes its token when needed.
 plugins {
-    alias(libs.plugins.platform.library)
-    alias(libs.plugins.platform.integration.test)
+    alias(libs.plugins.conventions.library)
+    alias(libs.plugins.conventions.integration.test)
     id 'java-test-fixtures' // demo-realm.json: the one Keycloak realm every integration test imports
 }
 
