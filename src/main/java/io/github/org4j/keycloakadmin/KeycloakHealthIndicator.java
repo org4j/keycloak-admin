@@ -1,9 +1,9 @@
-package uz.khakimjanovich.keycloakadmin4j;
+package io.github.org4j.keycloakadmin;
 
+import io.github.org4j.error.GeneralException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.health.contributor.Health;
 import org.springframework.boot.health.contributor.HealthIndicator;
-import uz.khakimjanovich.error4j.GeneralException;
 
 @RequiredArgsConstructor
 class KeycloakHealthIndicator implements HealthIndicator {

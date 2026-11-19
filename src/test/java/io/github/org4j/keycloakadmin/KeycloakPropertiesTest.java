@@ -1,4 +1,4 @@
-package uz.khakimjanovich.keycloakadmin4j;
+package io.github.org4j.keycloakadmin;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,39 +12,40 @@ class KeycloakPropertiesTest {
       new ApplicationContextRunner()
           .withConfiguration(AutoConfigurations.of(KeycloakAutoConfiguration.class))
           .withPropertyValues(
-              "keycloak-admin4j.url=http://localhost:8180", "keycloak-admin4j.client-id=backend");
+              "org4j.keycloak-admin.url=http://localhost:8180",
+              "org4j.keycloak-admin.client-id=backend");
 
   @Test
   void aCompleteConfigurationStarts() {
     runner
         .withPropertyValues(
-            "keycloak-admin4j.realm=demo", "keycloak-admin4j.client-secret=local-only")
+            "org4j.keycloak-admin.realm=demo", "org4j.keycloak-admin.client-secret=local-only")
         .run(context -> assertThat(context).hasSingleBean(KeycloakAdmin.class));
   }
 
   @Test
   void aMissingRealmStopsStartup() {
     runner
-        .withPropertyValues("keycloak-admin4j.client-secret=local-only")
+        .withPropertyValues("org4j.keycloak-admin.client-secret=local-only")
         .run(
             context ->
                 assertThat(context)
                     .getFailure()
                     .rootCause()
-                    .hasMessageContaining("keycloak-admin4j")
+                    .hasMessageContaining("org4j.keycloak-admin")
                     .hasMessageContaining("realm"));
   }
 
   @Test
   void aMissingSecretStopsStartup() {
     runner
-        .withPropertyValues("keycloak-admin4j.realm=demo")
+        .withPropertyValues("org4j.keycloak-admin.realm=demo")
         .run(
             context ->
                 assertThat(context)
                     .getFailure()
                     .rootCause()
-                    .hasMessageContaining("keycloak-admin4j")
+                    .hasMessageContaining("org4j.keycloak-admin")
                     .hasMessageContaining("clientSecret"));
   }
 }
