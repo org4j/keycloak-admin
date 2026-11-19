@@ -1,4 +1,4 @@
-package uz.khakimjanovich.keycloakadmin4j;
+package io.github.org4j.keycloakadmin;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfiguration;

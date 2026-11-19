@@ -1,8 +1,9 @@
-package uz.khakimjanovich.keycloakadmin4j;
+package io.github.org4j.keycloakadmin;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import io.github.org4j.error.GeneralException;
 import java.time.Duration;
 import java.util.ResourceBundle;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,6 @@ import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.utility.MountableFile;
-import uz.khakimjanovich.error4j.GeneralException;
 
 class KeycloakStoppedIT {
 
@@ -36,13 +36,13 @@ class KeycloakStoppedIT {
     new ApplicationContextRunner()
         .withConfiguration(AutoConfigurations.of(KeycloakAutoConfiguration.class))
         .withPropertyValues(
-            "keycloak-admin4j.url=http://"
+            "org4j.keycloak-admin.url=http://"
                 + keycloak.getHost()
                 + ":"
                 + keycloak.getMappedPort(8080),
-            "keycloak-admin4j.realm=demo",
-            "keycloak-admin4j.client-id=demo-backend",
-            "keycloak-admin4j.client-secret=local-only")
+            "org4j.keycloak-admin.realm=demo",
+            "org4j.keycloak-admin.client-id=demo-backend",
+            "org4j.keycloak-admin.client-secret=local-only")
         .run(
             context -> {
               var admin = context.getBean(KeycloakAdmin.class);

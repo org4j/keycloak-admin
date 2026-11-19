@@ -1,4 +1,4 @@
-# keycloak-admin4j
+# keycloak-admin
 
 Keycloak's admin API for the few things modules need: users (with a password, a verified email,
 realm roles and the required actions the app asks for, e.g. `CONFIGURE_TOTP`) and
@@ -8,7 +8,7 @@ client credentials, refreshing the token through Spring Security; a token Keyclo
 client is Boot's (`spring.http.clients.*`: SSL bundle, redirects) with its own timeouts.
 
 ```groovy
-implementation libs.keycloak.admin4j
+implementation libs.keycloak.admin
 ```
 
 ```java
@@ -24,12 +24,12 @@ var secret = keycloak.rotateSecret(client.id());
 
 | Property | Default | What |
 |---|---|---|
-| `keycloak-admin4j.url` | — | Keycloak's base URL; setting it turns the library on |
-| `keycloak-admin4j.realm` | — | the realm managed |
-| `keycloak-admin4j.client-id` | — | the backend's confidential client, allowed to use the admin API |
-| `keycloak-admin4j.client-secret` | — | that client's secret, from Vault; required |
-| `keycloak-admin4j.connect-timeout` | 5s | for every call, the token request included |
-| `keycloak-admin4j.read-timeout` | 10s | for every call, the token request included |
+| `org4j.keycloak-admin.url` | — | Keycloak's base URL; setting it turns the library on |
+| `org4j.keycloak-admin.realm` | — | the realm managed |
+| `org4j.keycloak-admin.client-id` | — | the backend's confidential client, allowed to use the admin API |
+| `org4j.keycloak-admin.client-secret` | — | that client's secret, from Vault; required |
+| `org4j.keycloak-admin.connect-timeout` | 5s | for every call, the token request included |
+| `org4j.keycloak-admin.read-timeout` | 10s | for every call, the token request included |
 
 ## Errors
 
@@ -50,9 +50,9 @@ DOWN names the error code only.
 
 ## Tests
 
-- `./gradlew -p platform :keycloak:test`: every failure as its error, a refused token replaced
+- `./gradlew test`: every failure as its error, a refused token replaced
   once, the read timeout, the property checks.
 - Test fixtures: `demo-realm.json`, the one realm (`demo`) every integration test imports, here, in
-  security and in the app (`testFixtures(libs.keycloak.admin4j)`).
-- `./gradlew -p platform :keycloak:integrationTest`: a real Keycloak with that realm: users,
+  security and in the app (`testFixtures(libs.keycloak.admin)`).
+- `./gradlew integrationTest`: a real Keycloak with that realm: users,
   roles, logins, secrets that rotate, and Keycloak stopped mid-life.

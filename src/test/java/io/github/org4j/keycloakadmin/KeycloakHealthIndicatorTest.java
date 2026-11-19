@@ -1,12 +1,12 @@
-package uz.khakimjanovich.keycloakadmin4j;
+package io.github.org4j.keycloakadmin;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 
+import io.github.org4j.error.GeneralException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.health.contributor.Status;
-import uz.khakimjanovich.error4j.GeneralException;
 
 class KeycloakHealthIndicatorTest {
 

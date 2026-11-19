@@ -1,8 +1,10 @@
-package uz.khakimjanovich.keycloakadmin4j;
+package io.github.org4j.keycloakadmin;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import io.github.org4j.error.GeneralException;
+import io.github.org4j.observability.ObservabilityAutoConfiguration;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.List;
@@ -32,8 +34,6 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.MountableFile;
-import uz.khakimjanovich.error4j.GeneralException;
-import uz.khakimjanovich.observability4j.ObservabilityAutoConfiguration;
 
 @Testcontainers
 @ExtendWith(OutputCaptureExtension.class)
@@ -74,11 +74,11 @@ class KeycloakAdminIT {
         new SpringApplicationBuilder(App.class)
             .web(WebApplicationType.NONE)
             .properties(
-                "keycloak-admin4j.url=" + url(),
-                "keycloak-admin4j.realm=demo",
-                "keycloak-admin4j.client-id=demo-backend",
-                "keycloak-admin4j.client-secret=local-only",
-                "observability4j.logging.masking.fields=value",
+                "org4j.keycloak-admin.url=" + url(),
+                "org4j.keycloak-admin.realm=demo",
+                "org4j.keycloak-admin.client-id=demo-backend",
+                "org4j.keycloak-admin.client-secret=local-only",
+                "org4j.observability.logging.masking.fields=value",
                 // No setting has a default; this test starts no collector, and traces nothing.
                 "TRACING_SAMPLING=0.0",
                 "OTLP_TRACES_ENDPOINT=http://otlp.not-started.invalid/v1/traces",
