@@ -1,4 +1,4 @@
-package uz.khakimjanovich.platform.keycloak;
+package uz.khakimjanovich.keycloakadmin4j;
 
 import java.io.IOException;
 import org.springframework.http.HttpHeaders;

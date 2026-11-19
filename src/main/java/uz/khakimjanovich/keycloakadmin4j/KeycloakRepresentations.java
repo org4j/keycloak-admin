@@ -1,4 +1,4 @@
-package uz.khakimjanovich.platform.keycloak;
+package uz.khakimjanovich.keycloakadmin4j;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

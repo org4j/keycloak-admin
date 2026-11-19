@@ -1,4 +1,4 @@
-package uz.khakimjanovich.platform.keycloak;
+package uz.khakimjanovich.keycloakadmin4j;
 
 import java.net.URI;
 import java.util.List;
@@ -15,15 +15,15 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestClientResponseException;
 import tools.jackson.databind.node.ObjectNode;
-import uz.khakimjanovich.platform.error.GeneralException;
-import uz.khakimjanovich.platform.keycloak.KeycloakRepresentations.Client;
-import uz.khakimjanovich.platform.keycloak.KeycloakRepresentations.Credential;
-import uz.khakimjanovich.platform.keycloak.KeycloakRepresentations.Enabled;
-import uz.khakimjanovich.platform.keycloak.KeycloakRepresentations.Failure;
-import uz.khakimjanovich.platform.keycloak.KeycloakRepresentations.Identified;
-import uz.khakimjanovich.platform.keycloak.KeycloakRepresentations.Role;
-import uz.khakimjanovich.platform.keycloak.KeycloakRepresentations.Secret;
-import uz.khakimjanovich.platform.keycloak.KeycloakRepresentations.User;
+import uz.khakimjanovich.error4j.GeneralException;
+import uz.khakimjanovich.keycloakadmin4j.KeycloakRepresentations.Client;
+import uz.khakimjanovich.keycloakadmin4j.KeycloakRepresentations.Credential;
+import uz.khakimjanovich.keycloakadmin4j.KeycloakRepresentations.Enabled;
+import uz.khakimjanovich.keycloakadmin4j.KeycloakRepresentations.Failure;
+import uz.khakimjanovich.keycloakadmin4j.KeycloakRepresentations.Identified;
+import uz.khakimjanovich.keycloakadmin4j.KeycloakRepresentations.Role;
+import uz.khakimjanovich.keycloakadmin4j.KeycloakRepresentations.Secret;
+import uz.khakimjanovich.keycloakadmin4j.KeycloakRepresentations.User;
 
 @RequiredArgsConstructor
 public class KeycloakAdmin {

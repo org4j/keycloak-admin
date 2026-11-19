@@ -1,4 +1,4 @@
 @NullMarked
-package uz.khakimjanovich.platform.keycloak;
+package uz.khakimjanovich.keycloakadmin4j;
 
 import org.jspecify.annotations.NullMarked;

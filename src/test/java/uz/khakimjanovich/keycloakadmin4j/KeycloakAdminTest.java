@@ -1,4 +1,4 @@
-package uz.khakimjanovich.platform.keycloak;
+package uz.khakimjanovich.keycloakadmin4j;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -25,7 +25,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.json.JsonCompareMode;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestClient;
-import uz.khakimjanovich.platform.error.GeneralException;
+import uz.khakimjanovich.error4j.GeneralException;
 
 class KeycloakAdminTest {
 
@@ -230,10 +230,10 @@ class KeycloakAdminTest {
       new ApplicationContextRunner()
           .withConfiguration(AutoConfigurations.of(KeycloakAutoConfiguration.class))
           .withPropertyValues(
-              "platform.keycloak.url=http://localhost:" + keycloak.getAddress().getPort(),
-              "platform.keycloak.realm=demo",
-              "platform.keycloak.client-id=backend",
-              "platform.keycloak.client-secret=local-only")
+              "keycloak-admin4j.url=http://localhost:" + keycloak.getAddress().getPort(),
+              "keycloak-admin4j.realm=demo",
+              "keycloak-admin4j.client-id=backend",
+              "keycloak-admin4j.client-secret=local-only")
           .run(
               context -> {
                 var id =
@@ -255,11 +255,11 @@ class KeycloakAdminTest {
       new ApplicationContextRunner()
           .withConfiguration(AutoConfigurations.of(KeycloakAutoConfiguration.class))
           .withPropertyValues(
-              "platform.keycloak.url=http://localhost:" + silent.getLocalPort(),
-              "platform.keycloak.realm=demo",
-              "platform.keycloak.client-id=backend",
-              "platform.keycloak.client-secret=local-only",
-              "platform.keycloak.read-timeout=300ms")
+              "keycloak-admin4j.url=http://localhost:" + silent.getLocalPort(),
+              "keycloak-admin4j.realm=demo",
+              "keycloak-admin4j.client-id=backend",
+              "keycloak-admin4j.client-secret=local-only",
+              "keycloak-admin4j.read-timeout=300ms")
           .run(
               context -> {
                 var started = System.nanoTime();

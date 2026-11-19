@@ -1,6 +1,6 @@
-package uz.khakimjanovich.platform.keycloak;
+package uz.khakimjanovich.keycloakadmin4j;
 
-import uz.khakimjanovich.platform.error.StatusThrowable;
+import uz.khakimjanovich.error4j.StatusThrowable;
 
 public enum KeycloakExceptionStatus implements StatusThrowable {
   KEYCLOAK_CONFLICT,

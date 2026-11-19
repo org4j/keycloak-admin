@@ -1,11 +1,11 @@
-package uz.khakimjanovich.platform.keycloak;
+package uz.khakimjanovich.keycloakadmin4j;
 
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class KeycloakConstants {
 
-  public static final String PROPERTIES_PREFIX = "platform.keycloak";
+  public static final String PROPERTIES_PREFIX = "keycloak-admin4j";
   public static final String REGISTRATION_ID = "keycloak-admin";
   public static final String ADMIN_PATH = "/admin/realms/%s";
   public static final String TOKEN_PATH = "/realms/%s/protocol/openid-connect/token";
