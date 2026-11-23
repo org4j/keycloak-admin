@@ -12,6 +12,7 @@ import org.springframework.boot.http.client.HttpClientSettings;
 import org.springframework.boot.http.client.autoconfigure.HttpClientAutoConfiguration;
 import org.springframework.boot.http.client.autoconfigure.imperative.ImperativeHttpClientAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.security.oauth2.client.AuthorizedClientServiceOAuth2AuthorizedClientManager;
@@ -26,6 +27,10 @@ import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.http.converter.OAuth2AccessTokenResponseHttpMessageConverter;
 import org.springframework.web.client.RestClient;
 
+/**
+ * {@link KeycloakAdmin} once {@code org4j.keycloak-admin.url} is set, and with the actuator its
+ * health indicator, {@code keycloak}.
+ */
 @AutoConfiguration(
     after = {HttpClientAutoConfiguration.class, ImperativeHttpClientAutoConfiguration.class})
 @ConditionalOnProperty(prefix = KeycloakConstants.PROPERTIES_PREFIX, name = "url")
@@ -72,13 +77,6 @@ public class KeycloakAutoConfiguration {
             .build());
   }
 
-  @Bean
-  @ConditionalOnClass(HealthIndicator.class)
-  @ConditionalOnMissingBean(name = KeycloakConstants.HEALTH_INDICATOR_BEAN)
-  HealthIndicator keycloakHealthIndicator(KeycloakAdmin admin) {
-    return new KeycloakHealthIndicator(admin);
-  }
-
   private static ClientCredentialsOAuth2AuthorizedClientProvider tokens(
       ClientHttpRequestFactory http) {
     var tokenClient = new RestClientClientCredentialsTokenResponseClient();
@@ -96,5 +94,18 @@ public class KeycloakAutoConfiguration {
     var provider = new ClientCredentialsOAuth2AuthorizedClientProvider();
     provider.setAccessTokenResponseClient(tokenClient);
     return provider;
+  }
+
+  // A class of its own: a method returning HealthIndicator here would fail to load without the
+  // actuator.
+  @Configuration(proxyBeanMethods = false)
+  @ConditionalOnClass(HealthIndicator.class)
+  static class Health {
+
+    @Bean
+    @ConditionalOnMissingBean(name = KeycloakConstants.HEALTH_INDICATOR_BEAN)
+    HealthIndicator keycloakHealthIndicator(KeycloakAdmin admin) {
+      return new KeycloakHealthIndicator(admin);
+    }
   }
 }
