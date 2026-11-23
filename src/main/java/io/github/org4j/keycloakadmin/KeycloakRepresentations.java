@@ -3,11 +3,9 @@ package io.github.org4j.keycloakadmin;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
-import lombok.experimental.UtilityClass;
 import org.jspecify.annotations.Nullable;
 
-@UtilityClass
-class KeycloakRepresentations {
+final class KeycloakRepresentations {
 
   @JsonInclude(JsonInclude.Include.NON_NULL)
   record User(
@@ -22,6 +20,8 @@ class KeycloakRepresentations {
   record Credential(String type, String value, boolean temporary) {}
 
   record Enabled(boolean enabled) {}
+
+  record EmailVerified(boolean emailVerified) {}
 
   record Client(
       String clientId,
@@ -42,4 +42,6 @@ class KeycloakRepresentations {
 
   @JsonIgnoreProperties(ignoreUnknown = true)
   record Failure(@Nullable String errorMessage, @Nullable String error) {}
+
+  private KeycloakRepresentations() {}
 }

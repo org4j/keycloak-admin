@@ -221,6 +221,37 @@ class KeycloakAdminIT {
     assertThat(passwordStatus(email, "correct-horse-42")).isEqualTo(200);
   }
 
+  @Test
+  void changingOneFieldOfAUserKeepsTheRest() {
+    var email = UUID.randomUUID() + "@example.com";
+    var created =
+        admin.createUser(
+            email, email, "correct-horse-42", false, List.of(KeycloakConstants.CONFIGURE_TOTP));
+    admin.markEmailVerified(created);
+    assertThat(adminGet("/users/" + created))
+        .containsEntry("emailVerified", true)
+        .containsEntry("email", email)
+        .containsEntry("requiredActions", List.of(KeycloakConstants.CONFIGURE_TOTP));
+
+    var invited = admin.inviteUser(UUID.randomUUID() + "@example.com", "Aziza", List.of());
+    admin.disableUser(invited);
+    admin.enableUser(invited);
+    assertThat(adminGet("/users/" + invited))
+        .containsEntry("firstName", "Aziza")
+        .containsEntry("emailVerified", true);
+  }
+
+  @Test
+  void aClientWhoseRoleFailsCanBeCreatedOnceMore() {
+    var clientId = "retry-" + UUID.randomUUID().toString().substring(0, 8);
+    assertThatThrownBy(() -> admin.createConfidentialClient(clientId, "no-such-role"))
+        .isInstanceOfSatisfying(
+            GeneralException.class,
+            e -> assertThat(e.getStatus()).isEqualTo(KeycloakExceptionStatus.KEYCLOAK_REJECTED));
+    var issued = admin.createConfidentialClient(clientId, "partner");
+    assertThat(clientCredentials(clientId, issued.secret())).isEqualTo(200);
+  }
+
   private static String claims(String token) {
     return new String(Base64.getUrlDecoder().decode(token.split("\\.")[1]));
   }
