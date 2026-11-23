@@ -1,3 +1,4 @@
+/** Keycloak's admin API for one realm: {@link io.github.org4j.keycloakadmin.KeycloakAdmin}. */
 @NullMarked
 package io.github.org4j.keycloakadmin;
 

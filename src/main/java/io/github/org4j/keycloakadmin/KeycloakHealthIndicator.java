@@ -1,14 +1,16 @@
 package io.github.org4j.keycloakadmin;
 
 import io.github.org4j.error.GeneralException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.health.contributor.Health;
 import org.springframework.boot.health.contributor.HealthIndicator;
 
-@RequiredArgsConstructor
 class KeycloakHealthIndicator implements HealthIndicator {
 
   private final KeycloakAdmin admin;
+
+  KeycloakHealthIndicator(KeycloakAdmin admin) {
+    this.admin = admin;
+  }
 
   @Override
   public Health health() {
